@@ -16,31 +16,27 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/
  */
 
-package ch.swaechter.webcms.application;
+package ch.swaechter.webcms.frontend;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Launches the Spring Boot application.
+ * Serves the static frontend.
  *
  * @author Simon Wächter
  */
-@SpringBootApplication
-@ComponentScan({"ch.swaechter.webcms"})
-@EntityScan(basePackages = "ch.swaechter.webcms")
-@EnableJpaRepositories("ch.swaechter.webcms")
-public class Application {
+@RestController
+public class IndexController {
 
     /**
-     * Entry point for the application that creates the Spring Boot web application.
+     * Entry point for the static frontend.
      *
-     * @param args Application parameters
+     * @return Static frontend
      */
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    @RequestMapping(value = "/")
+    public ModelAndView index() {
+        return new ModelAndView("index.html");
     }
 }

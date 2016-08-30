@@ -3,22 +3,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <relativePath>../..</relativePath>
         <groupId>ch.swaechter</groupId>
         <artifactId>webcms</artifactId>
         <version>0.1.0</version>
     </parent>
-    <artifactId>webcms-application</artifactId>
+    <artifactId>webcms-backend</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>ch.swaechter.webcms.application.Application</start-class>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>1.4.0.RELEASE</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -26,22 +19,8 @@
         </dependency>
         <dependency>
             <groupId>ch.swaechter</groupId>
-            <artifactId>webcms-backend</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.swaechter</groupId>
-            <artifactId>webcms-frontend</artifactId>
+            <artifactId>webcms-services</artifactId>
             <version>0.1.0</version>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.4.0.RELEASE</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>

@@ -1,0 +1,9 @@
+# Build system
+etc/
+node/
+node_modules/
+typings/
+*.log
+
+# Generated frontend
+resources/

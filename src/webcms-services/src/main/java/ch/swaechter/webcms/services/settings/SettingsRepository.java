@@ -16,28 +16,14 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/
  */
 
-package ch.swaechter.webcms.application;
+package ch.swaechter.webcms.services.settings;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * Sample controller that serves a welcome message.
+ * Handles all settings interactions.
  *
  * @author Simon Wächter
  */
-@Controller
-public class HomeController {
-
-    /**
-     * Serves a welcome message.
-     *
-     * @return Welcome message
-     */
-    @ResponseBody
-    @RequestMapping(value = "/")
-    public String home() {
-        return new String("Hello WebCMS!");
-    }
+public interface SettingsRepository extends JpaRepository<Settings, Long> {
 }

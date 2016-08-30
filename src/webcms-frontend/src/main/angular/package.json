@@ -1,0 +1,32 @@
+{
+  "name": "webcms",
+  "version": "0.1.0",
+  "license": "GPL",
+  "angular-cli": {},
+  "scripts": {
+    "build": "rm -rf ../resources && mkdir ../resources && ng build && cp node_modules/jquery/dist/jquery.min.js dist && cp node_modules/bootstrap/dist/js/bootstrap.min.js dist && cp node_modules/bootstrap/dist/css/bootstrap.min.css dist && mv dist ../resources/public"
+  },
+  "dependencies": {
+    "@angular/common": "2.0.0-rc.5",
+    "@angular/compiler": "2.0.0-rc.5",
+    "@angular/core": "2.0.0-rc.5",
+    "@angular/forms": "0.3.0",
+    "@angular/http": "2.0.0-rc.5",
+    "@angular/platform-browser": "2.0.0-rc.5",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
+    "@angular/router": "3.0.0-rc.1",
+    "bootstrap": "^4.0.0-alpha.3",
+    "core-js": "^2.4.0",
+    "jquery": "^3.1.0",
+    "reflect-metadata": "0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "0.6.12"
+  },
+  "devDependencies": {
+    "angular-cli": "1.0.0-beta.11-webpack.2",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0",
+    "typescript": "^2.0.0"
+  }
+}

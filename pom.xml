@@ -18,6 +18,9 @@
     <modules>
         <module>utils</module>
         <module>src/webcms-application</module>
+        <module>src/webcms-frontend</module>
+        <module>src/webcms-backend</module>
+        <module>src/webcms-services</module>
     </modules>
     <build>
         <plugins>

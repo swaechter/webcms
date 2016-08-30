@@ -16,31 +16,37 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/
  */
 
-package ch.swaechter.webcms.application;
+package ch.swaechter.webcms.backend;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import ch.swaechter.webcms.services.page.Page;
+import ch.swaechter.webcms.services.page.PageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
- * Launches the Spring Boot application.
+ * Handles all page requests.
  *
  * @author Simon Wächter
  */
-@SpringBootApplication
-@ComponentScan({"ch.swaechter.webcms"})
-@EntityScan(basePackages = "ch.swaechter.webcms")
-@EnableJpaRepositories("ch.swaechter.webcms")
-public class Application {
+@RestController
+public class PageController {
 
     /**
-     * Entry point for the application that creates the Spring Boot web application.
-     *
-     * @param args Application parameters
+     * Page service for all page interactions.
      */
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    @Autowired
+    private PageService pageservice;
+
+    /**
+     * Get all pages.
+     *
+     * @return All pages
+     */
+    @RequestMapping(value = "/api/pages/get")
+    public List<Page> getPages() {
+        return pageservice.getPages();
     }
 }

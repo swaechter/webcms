@@ -16,31 +16,21 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/
  */
 
-package ch.swaechter.webcms.application;
+package ch.swaechter.webcms.services.user;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import java.util.List;
 
 /**
- * Launches the Spring Boot application.
+ * Handles all user interactions.
  *
  * @author Simon Wächter
  */
-@SpringBootApplication
-@ComponentScan({"ch.swaechter.webcms"})
-@EntityScan(basePackages = "ch.swaechter.webcms")
-@EnableJpaRepositories("ch.swaechter.webcms")
-public class Application {
+public interface UserService {
 
     /**
-     * Entry point for the application that creates the Spring Boot web application.
+     * Get all users.
      *
-     * @param args Application parameters
+     * @return All users
      */
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+    List<User> getUsers();
 }

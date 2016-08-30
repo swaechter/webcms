@@ -16,31 +16,21 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/
  */
 
-package ch.swaechter.webcms.application;
+package ch.swaechter.webcms.services.settings;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import java.util.List;
 
 /**
- * Launches the Spring Boot application.
+ * Handles all settings interactions.
  *
  * @author Simon Wächter
  */
-@SpringBootApplication
-@ComponentScan({"ch.swaechter.webcms"})
-@EntityScan(basePackages = "ch.swaechter.webcms")
-@EnableJpaRepositories("ch.swaechter.webcms")
-public class Application {
+public interface SettingsService {
 
     /**
-     * Entry point for the application that creates the Spring Boot web application.
+     * Get all settings.
      *
-     * @param args Application parameters
+     * @return All settings
      */
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+    List<Settings> getSettings();
 }

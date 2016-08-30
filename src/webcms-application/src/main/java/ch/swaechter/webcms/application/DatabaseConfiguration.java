@@ -18,29 +18,25 @@
 
 package ch.swaechter.webcms.application;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
 
 /**
- * Launches the Spring Boot application.
+ * Configures the database factory for all database interactions.
  *
  * @author Simon Wächter
  */
-@SpringBootApplication
-@ComponentScan({"ch.swaechter.webcms"})
-@EntityScan(basePackages = "ch.swaechter.webcms")
-@EnableJpaRepositories("ch.swaechter.webcms")
-public class Application {
+@Configuration
+public class DatabaseConfiguration {
 
     /**
-     * Entry point for the application that creates the Spring Boot web application.
+     * Get a JPA session factory.
      *
-     * @param args Application parameters
+     * @return JPA session factory
      */
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    @Bean
+    public HibernateJpaSessionFactoryBean getSessionFactory() {
+        return new HibernateJpaSessionFactoryBean();
     }
 }
