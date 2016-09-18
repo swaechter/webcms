@@ -3,8 +3,6 @@ import {CommonModule} from "@angular/common";
 
 import {pagerouting} from "./page.routing";
 import {PageComponent} from "./page.component";
-import {PageContentComponent} from "./page-content.component";
-import {PageNavigationComponent} from "./page-navigation.component";
 import {PageService} from "../../services/page/page.service";
 
 @NgModule({
@@ -14,8 +12,6 @@ import {PageService} from "../../services/page/page.service";
     ],
     declarations: [
         PageComponent,
-        PageNavigationComponent,
-        PageContentComponent
     ],
     providers: [
         PageService

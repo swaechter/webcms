@@ -2,10 +2,10 @@ import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpModule} from "@angular/http";
 
-import {routing} from "./application.routing";
+import {routing} from "./app.routing";
 import {PageModule} from "./modules/page/page.module";
 import {AdminModule} from "./modules/admin/admin.module";
-import {ApplicationComponent} from "./application.component";
+import {AppComponent} from "./app.component";
 
 @NgModule({
     imports: [
@@ -16,12 +16,12 @@ import {ApplicationComponent} from "./application.component";
         AdminModule
     ],
     declarations: [
-        ApplicationComponent,
+        AppComponent,
     ],
     bootstrap: [
-        ApplicationComponent
+        AppComponent
     ]
 })
 
-export class ApplicationModule {
+export class AppModule {
 }
