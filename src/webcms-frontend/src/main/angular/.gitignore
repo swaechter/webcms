@@ -1,0 +1,10 @@
+# Build dependencies
+node_modules/
+
+# Build output
+src/tmp/
+dist/
+
+# IDE IntelliJ IDEA
+.idea/
+*.iml

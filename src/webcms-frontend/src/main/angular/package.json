@@ -1,41 +1,32 @@
 {
-  "name": "webcms",
+  "name": "web-angular2-example",
   "version": "0.1.0",
-  "license": "GNU GPL v3+",
-  "angular-cli": {
-  },
+  "license": "ISC",
+  "angular-cli": {},
   "scripts": {
-    "build": "ng build -prod --output-path ../resources/public"
+    "prepare": "rm -rf tmp && rm -rf dist",
+    "precompile": "ngc -p src/tsconfig.aot.json",
+    "compile": "ng build -prod",
+    "finish": "cp src/favicon.ico dist",
+    "build": "npm run prepare && npm run precompile && npm run compile && npm run finish"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
     "@angular/compiler": "2.0.0",
+    "@angular/compiler-cli": "0.6.3",
     "@angular/core": "2.0.0",
     "@angular/forms": "2.0.0",
     "@angular/http": "2.0.0",
     "@angular/platform-browser": "2.0.0",
-    "@angular/platform-browser-dynamic": "2.0.0",
-    "@angular/router": "3.0.0-rc.3",
+    "@angular/router": "3.0.0",
+    "@types/node": "^6.0.41",
+    "angular-cli": "^1.0.0-beta.15",
     "bootstrap": "4.0.0-alpha.4",
     "core-js": "^2.4.1",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.6.21"
-  },
-  "devDependencies": {
-    "@types/jasmine": "^2.2.30",
-    "angular-cli": "1.0.0-beta.11-webpack.9-4",
-    "codelyzer": "~0.0.26",
-    "jasmine-core": "2.4.1",
-    "jasmine-spec-reporter": "2.5.0",
-    "karma": "1.2.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-remap-istanbul": "^0.2.1",
-    "protractor": "4.0.5",
-    "ts-node": "1.2.1",
-    "tslint": "3.13.0",
-    "typescript": "2.0.2"
+    "ts-node": "^1.2.1",
+    "typescript": "^2.0.2",
+    "zone.js": "^0.6.23"
   }
 }
