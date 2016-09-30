@@ -5,10 +5,9 @@
   "angular-cli": {},
   "scripts": {
     "prepare": "rm -rf tmp && rm -rf dist",
-    "precompile": "ngc -p src/tsconfig.aot.json",
-    "compile": "ng build -prod",
+    "compile": "ngc -p src/tsconfig.aot.json && ng build -prod",
     "finish": "cp src/favicon.ico dist",
-    "build": "npm run prepare && npm run precompile && npm run compile && npm run finish"
+    "build": "npm run prepare && npm run compile && npm run finish"
   },
   "dependencies": {
     "@angular/common": "2.0.0",
