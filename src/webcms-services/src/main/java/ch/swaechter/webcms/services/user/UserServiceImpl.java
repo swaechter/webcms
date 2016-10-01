@@ -55,9 +55,56 @@ public class UserServiceImpl implements UserService {
     /**
      * Get all users.
      *
-     * @return All users.
+     * @return All users
      */
-    public List<User> getUsers() {
+    public List<User> getAllUsers() {
         return userrepository.findAll();
+    }
+
+    /**
+     * Get an existing user.
+     *
+     * @param id ID of the user
+     * @return User
+     */
+    public User getUser(long id) {
+        return userrepository.findOne(id);
+    }
+
+    /**
+     * Check if a user does exist.
+     *
+     * @param id ID of the user
+     * @return Status
+     */
+    public boolean isUserExisting(long id) {
+        return userrepository.exists(id);
+    }
+
+    /**
+     * Create a new user.
+     *
+     * @param user New user
+     */
+    public void createUser(User user) {
+        userrepository.save(user);
+    }
+
+    /**
+     * Update an existing user.
+     *
+     * @param user User
+     */
+    public void updateUser(User user) {
+        userrepository.save(user);
+    }
+
+    /**
+     * Delete an existing user.
+     *
+     * @param id ID of the user
+     */
+    public void deleteUser(long id) {
+        userrepository.delete(id);
     }
 }

@@ -55,7 +55,54 @@ public class SettingsServiceImpl implements SettingsService {
      *
      * @return All settings
      */
-    public List<Settings> getSettings() {
+    public List<Settings> getAllSettingss() {
         return settingsrepository.findAll();
+    }
+
+    /**
+     * Get an existing settings.
+     *
+     * @param id ID of the settings
+     * @return Settings
+     */
+    public Settings getSettings(long id) {
+        return settingsrepository.findOne(id);
+    }
+
+    /**
+     * Check if a settings does exist.
+     *
+     * @param id ID of the settings
+     * @return Status
+     */
+    public boolean isSettingsExisting(long id) {
+        return settingsrepository.exists(id);
+    }
+
+    /**
+     * Create a new settings.
+     *
+     * @param settings New settings
+     */
+    public void createSettings(Settings settings) {
+        settingsrepository.save(settings);
+    }
+
+    /**
+     * Update an existing settings.
+     *
+     * @param settings Settings
+     */
+    public void updateSettings(Settings settings) {
+        settingsrepository.save(settings);
+    }
+
+    /**
+     * Delete an existing settings.
+     *
+     * @param id ID of the settings
+     */
+    public void deleteSettings(long id) {
+        settingsrepository.delete(id);
     }
 }

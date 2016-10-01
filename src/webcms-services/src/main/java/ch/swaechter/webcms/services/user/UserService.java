@@ -32,5 +32,42 @@ public interface UserService {
      *
      * @return All users
      */
-    List<User> getUsers();
+    List<User> getAllUsers();
+
+    /**
+     * Get an existing user.
+     *
+     * @param id ID of the user
+     * @return User
+     */
+    User getUser(long id);
+
+    /**
+     * Check if a user does exist.
+     *
+     * @param id ID of the user
+     * @return Status
+     */
+    boolean isUserExisting(long id);
+
+    /**
+     * Create a new user.
+     *
+     * @param user New user
+     */
+    void createUser(User user);
+
+    /**
+     * Update an existing user.
+     *
+     * @param user User
+     */
+    void updateUser(User user);
+
+    /**
+     * Delete an existing user.
+     *
+     * @param id ID of the user
+     */
+    void deleteUser(long id);
 }

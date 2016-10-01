@@ -64,7 +64,54 @@ public class PageServiceImpl implements PageService {
      *
      * @return All pages
      */
-    public List<Page> getPages() {
+    public List<Page> getAllPages() {
         return pagerepository.findAll();
+    }
+
+    /**
+     * Get an existing page.
+     *
+     * @param id ID of the page
+     * @return Page
+     */
+    public Page getPage(long id) {
+        return pagerepository.findOne(id);
+    }
+
+    /**
+     * Check if a page does exist.
+     *
+     * @param id ID of the page
+     * @return Status
+     */
+    public boolean isPageExisting(long id) {
+        return pagerepository.exists(id);
+    }
+
+    /**
+     * Create a new page.
+     *
+     * @param page New page
+     */
+    public void createPage(Page page) {
+        pagerepository.save(page);
+    }
+
+    /**
+     * Update an existing page.
+     *
+     * @param page Page
+     */
+    public void updatePage(Page page) {
+        pagerepository.save(page);
+    }
+
+    /**
+     * Delete an existing page.
+     *
+     * @param id ID of the page
+     */
+    public void deletePage(long id) {
+        pagerepository.delete(id);
     }
 }

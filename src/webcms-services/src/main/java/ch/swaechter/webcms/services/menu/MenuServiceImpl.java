@@ -66,7 +66,54 @@ public class MenuServiceImpl implements MenuService {
      *
      * @return All menus
      */
-    public List<Menu> getMenus() {
+    public List<Menu> getAllMenus() {
         return menurepository.findAll();
+    }
+
+    /**
+     * Get an existing menu.
+     *
+     * @param id ID of the menu
+     * @return Menu
+     */
+    public Menu getMenu(long id) {
+        return menurepository.findOne(id);
+    }
+
+    /**
+     * Check if a menu does exist.
+     *
+     * @param id ID of the menu
+     * @return Status
+     */
+    public boolean isMenuExisting(long id) {
+        return menurepository.exists(id);
+    }
+
+    /**
+     * Create a new menu.
+     *
+     * @param menu New menu
+     */
+    public void createMenu(Menu menu) {
+        menurepository.save(menu);
+    }
+
+    /**
+     * Update an existing menu.
+     *
+     * @param menu Menu
+     */
+    public void updateMenu(Menu menu) {
+        menurepository.save(menu);
+    }
+
+    /**
+     * Delete an existing menu.
+     *
+     * @param id ID of the menu
+     */
+    public void deleteMenu(long id) {
+        menurepository.delete(id);
     }
 }

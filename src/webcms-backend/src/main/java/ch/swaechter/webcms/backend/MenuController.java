@@ -21,7 +21,12 @@ package ch.swaechter.webcms.backend;
 import ch.swaechter.webcms.services.menu.Menu;
 import ch.swaechter.webcms.services.menu.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,21 +37,120 @@ import java.util.List;
  * @author Simon Wächter
  */
 @RestController
+@RequestMapping("/api")
 public class MenuController {
 
     /**
      * Menu service for all menu interactions.
      */
+    private final MenuService menuservice;
+
+    /**
+     * Constructor with the menu service.
+     *
+     * @param menuservice Menu service
+     */
     @Autowired
-    private MenuService menuservice;
+    public MenuController(MenuService menuservice) {
+        this.menuservice = menuservice;
+    }
 
     /**
      * Get all menus.
      *
-     * @return All Menus
+     * @return All menus
      */
-    @RequestMapping(value = "/api/menus/get")
-    public List<Menu> getMenus() {
-        return menuservice.getMenus();
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    public ResponseEntity<List<Menu>> getMenus() {
+        try {
+            List<Menu> menus = menuservice.getAllMenus();
+            if (menus.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(menus, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Find a menu.
+     *
+     * @param id Menu ID
+     * @return Menu
+     */
+    @RequestMapping(value = "/menu/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Menu> getMenu(@PathVariable("id") long id) {
+        try {
+            Menu menu = menuservice.getMenu(id);
+            if (menu == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(menu, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Create a new menu.
+     *
+     * @param menu Menu
+     * @return Empty response
+     */
+    @RequestMapping(value = "/menu", method = RequestMethod.POST)
+    public ResponseEntity<Void> createMenu(@RequestBody Menu menu) {
+        try {
+            if (menuservice.isMenuExisting(menu.getId())) {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+            menuservice.createMenu(menu);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Update an existing menu.
+     *
+     * @param id   Menu ID
+     * @param menu Menu
+     * @return New menu
+     */
+    @RequestMapping(value = "/menu/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Menu> updateMenu(@PathVariable("id") long id, @RequestBody Menu menu) {
+        try {
+            Menu currentmenu = menuservice.getMenu(id);
+            if (currentmenu == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            currentmenu.setName(menu.getName());
+            currentmenu.setUrl(menu.getUrl());
+            menuservice.updateMenu(currentmenu);
+            return new ResponseEntity<>(currentmenu, HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Delete an existing menu.
+     *
+     * @param id Menu ID
+     * @return Empty respone
+     */
+    @RequestMapping(value = "/menu/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Menu> deleteMenu(@PathVariable("id") long id) {
+        try {
+            Menu menu = menuservice.getMenu(id);
+            if (menu == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            menuservice.deleteMenu(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -32,5 +32,42 @@ public interface PageService {
      *
      * @return All pages
      */
-    List<Page> getPages();
+    List<Page> getAllPages();
+
+    /**
+     * Get an existing page.
+     *
+     * @param id ID of the page
+     * @return Page
+     */
+    Page getPage(long id);
+
+    /**
+     * Check if a page does exist.
+     *
+     * @param id ID of the page
+     * @return Status
+     */
+    boolean isPageExisting(long id);
+
+    /**
+     * Create a new page.
+     *
+     * @param page New page
+     */
+    void createPage(Page page);
+
+    /**
+     * Update an existing page.
+     *
+     * @param page Page
+     */
+    void updatePage(Page page);
+
+    /**
+     * Delete an existing page.
+     *
+     * @param id ID of the page
+     */
+    void deletePage(long id);
 }

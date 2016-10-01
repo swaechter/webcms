@@ -32,5 +32,42 @@ public interface SettingsService {
      *
      * @return All settings
      */
-    List<Settings> getSettings();
+    List<Settings> getAllSettingss();
+
+    /**
+     * Get an existing settings.
+     *
+     * @param id ID of the settings
+     * @return Settings
+     */
+    Settings getSettings(long id);
+
+    /**
+     * Check if a settings does exist.
+     *
+     * @param id ID of the settings
+     * @return Status
+     */
+    boolean isSettingsExisting(long id);
+
+    /**
+     * Create a new settings.
+     *
+     * @param settings New settings
+     */
+    void createSettings(Settings settings);
+
+    /**
+     * Update an existing settings.
+     *
+     * @param settings Settings
+     */
+    void updateSettings(Settings settings);
+
+    /**
+     * Delete an existing settings.
+     *
+     * @param id ID of the settings
+     */
+    void deleteSettings(long id);
 }

@@ -32,5 +32,42 @@ public interface MenuService {
      *
      * @return All menus
      */
-    List<Menu> getMenus();
+    List<Menu> getAllMenus();
+
+    /**
+     * Get an existing menu.
+     *
+     * @param id ID of the menu
+     * @return Menu
+     */
+    Menu getMenu(long id);
+
+    /**
+     * Check if a menu does exist.
+     *
+     * @param id ID of the menu
+     * @return Status
+     */
+    boolean isMenuExisting(long id);
+
+    /**
+     * Create a new menu.
+     *
+     * @param menu New menu
+     */
+    void createMenu(Menu menu);
+
+    /**
+     * Update an existing menu.
+     *
+     * @param menu Menu
+     */
+    void updateMenu(Menu menu);
+
+    /**
+     * Delete an existing menu.
+     *
+     * @param id ID of the menu
+     */
+    void deleteMenu(long id);
 }
