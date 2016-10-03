@@ -8,11 +8,13 @@ import {Page} from "./page.model";
 @Injectable()
 export class PageService {
 
+    private url = "/api/page";
+
     constructor(private http: Http) {
     }
 
     getPages() {
-        return this.http.get("/api/pages/get").map(data => <Page[]> data.json()).catch(this.handleError);
+        return this.http.get(this.url).map(data => <Page[]> data.json()).catch(this.handleError);
     }
 
     private handleError(error: Response) {

@@ -8,11 +8,13 @@ import {Menu} from "./menu.model";
 @Injectable()
 export class MenuService {
 
+    private url = "/api/menu";
+
     constructor(private http: Http) {
     }
 
     getMenus() {
-        return this.http.get("/api/menus/get").map(data => <Menu[]> data.json()).catch(this.handleError);
+        return this.http.get(this.url).map(data => <Menu[]> data.json()).catch(this.handleError);
     }
 
     private handleError(error: Response) {

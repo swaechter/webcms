@@ -8,11 +8,13 @@ import {Settings} from "./settings.model";
 @Injectable()
 export class SettingsService {
 
+    private url = "/api/settings";
+
     constructor(private http: Http) {
     }
 
     getSettings() {
-        return this.http.get("/api/settings/get").map(data => <Settings[]> data.json()).catch(this.handleError);
+        return this.http.get(this.url).map(data => <Settings[]> data.json()).catch(this.handleError);
     }
 
     private handleError(error: Response) {

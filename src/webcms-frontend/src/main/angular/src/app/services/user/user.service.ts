@@ -8,11 +8,13 @@ import {User} from "./user.model";
 @Injectable()
 export class UserService {
 
+    private url = "/api/user";
+
     constructor(private http: Http) {
     }
 
     getUsers() {
-        return this.http.get("/api/users/get").map(data => <User[]> data.json()).catch(this.handleError);
+        return this.http.get(this.url).map(data => <User[]> data.json()).catch(this.handleError);
     }
 
     private handleError(error: Response) {
