@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "rm -rf tmp && rm -rf dist",
     "compile": "ngc -p src/tsconfig.aot.json && ng build -prod --output-path ../resources/public",
-    "finish": "cp src/favicon.ico dist",
+    "finish": "cp src/favicon.ico ../resources/public",
     "build": "npm run prepare && npm run compile && npm run finish"
   },
   "dependencies": {
