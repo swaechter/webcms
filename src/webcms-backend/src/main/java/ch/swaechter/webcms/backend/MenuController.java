@@ -23,10 +23,13 @@ import ch.swaechter.webcms.services.menu.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -60,7 +63,7 @@ public class MenuController {
      *
      * @return All menus
      */
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    @GetMapping("/menu")
     public ResponseEntity<List<Menu>> getMenus() {
         try {
             List<Menu> menus = menuservice.getAllMenus();
@@ -79,7 +82,7 @@ public class MenuController {
      * @param id Menu ID
      * @return Menu
      */
-    @RequestMapping(value = "/menu/{id}", method = RequestMethod.GET)
+    @GetMapping("/menu/{id}")
     public ResponseEntity<Menu> getMenu(@PathVariable("id") long id) {
         try {
             Menu menu = menuservice.getMenu(id);
@@ -98,7 +101,7 @@ public class MenuController {
      * @param menu Menu
      * @return Empty response
      */
-    @RequestMapping(value = "/menu", method = RequestMethod.POST)
+    @PostMapping("/menu")
     public ResponseEntity<Void> createMenu(@RequestBody Menu menu) {
         try {
             if (menuservice.isMenuExisting(menu.getId())) {
@@ -118,7 +121,7 @@ public class MenuController {
      * @param menu Menu
      * @return New menu
      */
-    @RequestMapping(value = "/menu/{id}", method = RequestMethod.PUT)
+    @PutMapping("/menu/{id}")
     public ResponseEntity<Menu> updateMenu(@PathVariable("id") long id, @RequestBody Menu menu) {
         try {
             Menu currentmenu = menuservice.getMenu(id);
@@ -140,7 +143,7 @@ public class MenuController {
      * @param id Menu ID
      * @return Empty respone
      */
-    @RequestMapping(value = "/menu/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/menu/{id}")
     public ResponseEntity<Menu> deleteMenu(@PathVariable("id") long id) {
         try {
             Menu menu = menuservice.getMenu(id);

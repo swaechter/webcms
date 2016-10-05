@@ -23,10 +23,13 @@ import ch.swaechter.webcms.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -60,7 +63,7 @@ public class UserController {
      *
      * @return All users
      */
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @GetMapping("/user")
     public ResponseEntity<List<User>> getUsers() {
         try {
             List<User> users = userservice.getAllUsers();
@@ -79,7 +82,7 @@ public class UserController {
      * @param id User ID
      * @return User
      */
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    @GetMapping("/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") long id) {
         try {
             User user = userservice.getUser(id);
@@ -98,7 +101,7 @@ public class UserController {
      * @param user User
      * @return Empty response
      */
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @PostMapping("/user")
     public ResponseEntity<Void> createUser(@RequestBody User user) {
         try {
             if (userservice.isUserExisting(user.getId())) {
@@ -118,7 +121,7 @@ public class UserController {
      * @param user User
      * @return New user
      */
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+    @PutMapping("/user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         try {
             User currentuser = userservice.getUser(id);
@@ -141,7 +144,7 @@ public class UserController {
      * @param id User ID
      * @return Empty respone
      */
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/user/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable("id") long id) {
         try {
             User user = userservice.getUser(id);

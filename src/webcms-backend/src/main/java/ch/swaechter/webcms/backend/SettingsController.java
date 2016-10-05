@@ -23,10 +23,13 @@ import ch.swaechter.webcms.services.settings.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -60,7 +63,7 @@ public class SettingsController {
      *
      * @return All settings
      */
-    @RequestMapping(value = "/settings", method = RequestMethod.GET)
+    @GetMapping("/settings")
     public ResponseEntity<List<Settings>> getSettingss() {
         try {
             List<Settings> settings = settingsservice.getAllSettingss();
@@ -79,7 +82,7 @@ public class SettingsController {
      * @param id Settings ID
      * @return Settings
      */
-    @RequestMapping(value = "/settings/{id}", method = RequestMethod.GET)
+    @GetMapping("/settings/{id}")
     public ResponseEntity<Settings> getSettings(@PathVariable("id") long id) {
         try {
             Settings settings = settingsservice.getSettings(id);
@@ -98,7 +101,7 @@ public class SettingsController {
      * @param settings Settings
      * @return Empty response
      */
-    @RequestMapping(value = "/settings", method = RequestMethod.POST)
+    @PostMapping("/settings")
     public ResponseEntity<Void> createSettings(@RequestBody Settings settings) {
         try {
             if (settingsservice.isSettingsExisting(settings.getId())) {
@@ -118,7 +121,7 @@ public class SettingsController {
      * @param settings Settings
      * @return New settings
      */
-    @RequestMapping(value = "/settings/{id}", method = RequestMethod.PUT)
+    @PutMapping("/settings/{id}")
     public ResponseEntity<Settings> updateSettings(@PathVariable("id") long id, @RequestBody Settings settings) {
         try {
             Settings currentsettings = settingsservice.getSettings(id);
@@ -139,7 +142,7 @@ public class SettingsController {
      * @param id Settings ID
      * @return Empty respone
      */
-    @RequestMapping(value = "/settings/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/settings/{id}")
     public ResponseEntity<Settings> deleteSettings(@PathVariable("id") long id) {
         try {
             Settings settings = settingsservice.getSettings(id);

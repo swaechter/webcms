@@ -23,10 +23,13 @@ import ch.swaechter.webcms.services.page.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -60,7 +63,7 @@ public class PageController {
      *
      * @return All pages
      */
-    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    @GetMapping("/page")
     public ResponseEntity<List<Page>> getPages() {
         try {
             List<Page> pages = pageservice.getAllPages();
@@ -79,7 +82,7 @@ public class PageController {
      * @param id Page ID
      * @return Page
      */
-    @RequestMapping(value = "/page/{id}", method = RequestMethod.GET)
+    @GetMapping("/page/{id}")
     public ResponseEntity<Page> getPage(@PathVariable("id") long id) {
         try {
             Page page = pageservice.getPage(id);
@@ -98,7 +101,7 @@ public class PageController {
      * @param page Page
      * @return Empty response
      */
-    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    @PostMapping("/page")
     public ResponseEntity<Void> createPage(@RequestBody Page page) {
         try {
             if (pageservice.isPageExisting(page.getId())) {
@@ -118,7 +121,7 @@ public class PageController {
      * @param page Page
      * @return New page
      */
-    @RequestMapping(value = "/page/{id}", method = RequestMethod.PUT)
+    @PutMapping("/page/{id}")
     public ResponseEntity<Page> updatePage(@PathVariable("id") long id, @RequestBody Page page) {
         try {
             Page currentpage = pageservice.getPage(id);
@@ -140,7 +143,7 @@ public class PageController {
      * @param id Page ID
      * @return Empty respone
      */
-    @RequestMapping(value = "/page/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/page/{id}")
     public ResponseEntity<Page> deletePage(@PathVariable("id") long id) {
         try {
             Page page = pageservice.getPage(id);
