@@ -16,27 +16,25 @@
  * along with this program.  If not, see http://www.gnu.org/licenses/
  */
 
-package ch.swaechter.webcms.application;
+package ch.swaechter.webcms;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Configures the database factory for all database interactions.
+ * Launches the Spring Boot application.
  *
  * @author Simon Wächter
  */
-@Configuration
-public class DatabaseConfiguration {
+@SpringBootApplication
+public class Application {
 
     /**
-     * Get a JPA session factory.
+     * Entry point for the application that creates the Spring Boot web application.
      *
-     * @return JPA session factory
+     * @param args Application parameters
      */
-    @Bean
-    public HibernateJpaSessionFactoryBean getSessionFactory() {
-        return new HibernateJpaSessionFactoryBean();
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
     }
 }

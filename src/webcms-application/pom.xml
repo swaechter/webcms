@@ -11,7 +11,7 @@
     <artifactId>webcms-application</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>ch.swaechter.webcms.application.Application</start-class>
+        <!--<start-class>ch.swaechter.webcms.Application</start-class>-->
     </properties>
     <dependencies>
         <dependency>
