@@ -67,9 +67,6 @@ public class MenuController {
     public ResponseEntity<List<Menu>> getMenus() {
         try {
             List<Menu> menus = menuservice.getAllMenus();
-            if (menus.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
             return new ResponseEntity<>(menus, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -67,9 +67,6 @@ public class UserController {
     public ResponseEntity<List<User>> getUsers() {
         try {
             List<User> users = userservice.getAllUsers();
-            if (users.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

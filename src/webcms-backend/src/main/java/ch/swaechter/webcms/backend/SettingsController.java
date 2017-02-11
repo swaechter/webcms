@@ -67,9 +67,6 @@ public class SettingsController {
     public ResponseEntity<List<Settings>> getSettingss() {
         try {
             List<Settings> settings = settingsservice.getAllSettingss();
-            if (settings.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
             return new ResponseEntity<>(settings, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

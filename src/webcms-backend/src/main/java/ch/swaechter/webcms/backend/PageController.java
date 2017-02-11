@@ -67,9 +67,6 @@ public class PageController {
     public ResponseEntity<List<Page>> getPages() {
         try {
             List<Page> pages = pageservice.getAllPages();
-            if (pages.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
             return new ResponseEntity<>(pages, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
