@@ -21,6 +21,7 @@
         <module>src/webcms-frontend</module>
         <module>src/webcms-backend</module>
         <module>src/webcms-services</module>
+        <module>src/webcms-core</module>
     </modules>
     <build>
         <plugins>
